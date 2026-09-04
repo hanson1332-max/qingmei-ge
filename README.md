@@ -37,4 +37,4 @@
 4. 将正式网页完整地址加入 Supabase Auth Redirect URLs。新工具使用单独会话存储，不复用甘特图本机登录状态。
 5. 管理员在新网页登录并导入最新备份 JSON。此步骤会发布数据给访客阅读。核对人数、指标、数值后，再进行匿名拒写、管理员写入和版本冲突的真实验证。
 
-当前状态：本地云端版已生成；缺 Supabase 管理连接，未建表、未发布 GitHub Pages、未写入云端数据。不要将 `public/index.html` 当作已上线链接。
+部署进展：GitHub 仓库 `hanson1332-max/qingmei-ge` 已创建，Pages 发布源为 `gh-pages` 分支根目录，地址为 https://hanson1332-max.github.io/qingmei-ge/ 。数据库已由用户建表并设置 1 位管理员；匿名读取成功、匿名保存返回 401/42501。云端当前 revision=0、data=null，尚未导入用户 JSON。仍需在 Supabase 配置该完整地址为允许登录回跳地址，再由管理员登录并导入正式数据；真实管理员保存和冲突检查尚待完成。
