@@ -16,8 +16,8 @@
     for(const c of s.categories)if(!/^#[a-f\d]{6}$/i.test(c.color))throw Error('分类颜色格式无效');
     for(const d of s.dimensions)if(!['x','y'].includes(d.axis)||!Number.isFinite(d.weight)||d.weight<0)throw Error('评分维度无效');
     for(const t of s.tracks){
-      if(!s.categories.some(c=>c.id===t.categoryId)||!t.scores||!Number.isFinite(t.market)||t.market<0)throw Error('赛道归属或行业空间无效');
-      for(const d of s.dimensions)if(!Number.isFinite(t.scores[d.id])||t.scores[d.id]<1||t.scores[d.id]>5)throw Error('评分须在 1–5 之间');
+      if(!s.categories.some(c=>c.id===t.categoryId)||!t.scores||(t.market!==null&&(!Number.isFinite(t.market)||t.market<0)))throw Error('赛道归属或行业空间无效');
+      for(const d of s.dimensions)if(t.scores[d.id]!==null&&(!Number.isFinite(t.scores[d.id])||t.scores[d.id]<1||t.scores[d.id]>5))throw Error('评分须在 1–5 之间；缺数请留空');
     }
     if(!['formula','manual'].includes(s.view.positionMode)||!Number.isFinite(+s.view.bubbleMax)||!Number.isFinite(+s.view.bubbleContrast))throw Error('绘图设置无效');
     return normalizeState(s);
